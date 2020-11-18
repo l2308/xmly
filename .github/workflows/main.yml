@@ -1,5 +1,5 @@
 # File: .github/workflows/repo-sync.yml
-name: sync-sazs34-scripts
+name: sync-xmly-sk-scripts
 on:
   schedule:
     - cron: '5 0,15 * * *'
@@ -7,7 +7,7 @@ on:
   watch:
     types: started
   repository_dispatch:
-    types: sync-sazs34-scripts
+    types: sync-xmly-sk-scripts
 jobs:
   repo-sync:
     env:
@@ -19,7 +19,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: sync sazs34-scripts
+      - name: sync xmly-sk-scripts
         uses: repo-sync/github-sync@v2
         if: env.PAT
         with:
