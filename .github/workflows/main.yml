@@ -1,4 +1,4 @@
-# File: .github/workflows/repo-sync.yml
+
 name: sync-sazs34-scripts
   schedule:
     - cron: '5 0,15 * * *'
