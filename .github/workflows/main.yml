@@ -1,11 +1,15 @@
-name: 同步上游仓库
+# File: .github/workflows/repo-sync.yml
+name: sync-lxk0301-scripts
 on:
   schedule:
-    - cron: '0 */2 * * *'
+    - cron: '1 0,15 * * *'
+  workflow_dispatch:
   watch:
     types: started
+  push:
+    branches: [ master ]
   repository_dispatch:
-    types: sync-repo
+    types: sync-lxk0301-scripts
 jobs:
   repo-sync:
     env:
@@ -17,11 +21,12 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: sync-repo
+      - name: sync lxk0301-scripts
         uses: repo-sync/github-sync@v2
         if: env.PAT
         with:
           source_repo: "https://github.com/I2308/xmly.git"
-          source_branch: "master"
-          destination_branch: "main"
+          source_branch: "main" # mySelf仓库的分支
+          destination_branch: "master" #你自己远程的分支
           github_token: ${{ secrets.PAT }}
+
